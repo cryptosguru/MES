@@ -1,0 +1,6 @@
+.env
+
+/redis-data
+/redis-conf
+/postgres-data
+/postgres-scripts

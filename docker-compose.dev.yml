@@ -1,0 +1,57 @@
+version: '3.3'
+
+services:
+  client:
+    build: 
+      dockerfile: ./dev.dockerfile
+      context: ./client/
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client:/usr/src/messagingApp/client
+    container_name: messagingAppClient
+    restart: unless-stopped
+    depends_on:
+      - api
+  api:
+    build:
+      dockerfile: ./dev.dockerfile 
+      context: ./api
+    ports:
+      - 5000:5000
+    volumes:
+      - ./api:/go/src/github.com/T3jasH/messagingApp/api 
+    container_name: messagingAppApi
+    restart: unless-stopped
+    depends_on:
+      - db
+      - cache
+  db:
+    image: postgres:alpine3.15
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: messagingApp
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./postgres-scripts/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
+    container_name: messagingAppDb
+    logging: 
+      driver: none
+  cache:
+    image: redis:6.2
+    restart: always
+    container_name: messagingAppCache
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis-data:/var/lib/redis
+      - ./redis-conf/redis.conf:/usr/local/etc/redis/redis.conf
+networks:
+  network:
+    driver: bridge
+  internal:
+    driver: bridge

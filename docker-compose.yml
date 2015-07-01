@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+  db:
+    build: ./db
+    container_name: messagingApp_db
+    volumes:
+      - ./data:/data/db
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=codeportal
+    networks:
+      - network
+    logging:
+      driver: none
+  api:
+    build: .
+    container_name: messagingApp_api
+    ports:
+      - 5000:5000
+    volumes:
+      - ./:/messagingApp
+
+networks:
+  network:
+    driver: bridge
+  internal:
+    driver: bridge
