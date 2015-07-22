@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700;800&display=swap");
+@import "./styles/Auth.css";
+@import "./styles/Main.css";
+@import "./styles/Messages.css";
+@import "./styles/Conversations.css";
+@import "./styles/UserProfile.css";
+@import "./styles/ChannelProfile.css";
+
+/*
+https://dribbble.com/shots/6318060-Chat-web-app-design
+*/
+
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--dark3);
+    height: 100vh;
+    color: var(--fontColor);
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.6rem;
+}
+
+h3 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    color: var(--fontColor);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    outline: none;
+    border: none;
+    background-color: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--fontColor);
+}
+
+:root {
+    font-size: 18.5px;
+    --dark1: #0c154d;
+    --dark2: #0f1e7d;
+    --dark3: #124e78;
+    --light1: #0c519e;
+    --fontColor: #dedede;
+}

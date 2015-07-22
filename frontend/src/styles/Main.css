@@ -1,0 +1,22 @@
+.page > main {
+    background-color: var(--dark1);
+    width: 90%;
+    height: 90vh;
+    border-radius: 0.5em;
+    position: relative;
+    display: flex;
+    --containerPadding: 0.5em;
+}
+
+.banner {
+    width: max-content;
+    height: max-content;
+    padding: 0.25em;
+    background-color: #454545;
+    color: #fff;
+    font-size: 0.6rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    visibility: hidden;
+}

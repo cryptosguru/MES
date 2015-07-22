@@ -1,0 +1,142 @@
+.page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-container {
+    position: relative;
+    height: 85vh;
+    width: 35%;
+    border-radius: 2.5em;
+    background-color: var(--dark1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0.1em 0.1em 0.3em 0.4em rgba(0, 0, 0, 0.25),
+        -0.1em -0.1em 0.3em 0.4em rgba(0, 0, 0, 0.25);
+}
+
+form {
+    position: relative;
+    width: calc(80% - 1em);
+    padding: 0, 0.5em;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    overflow-y: auto;
+    overflow-x: none;
+}
+
+.auth-container > h2 {
+    letter-spacing: 0.1em;
+}
+
+.auth-container form input {
+    position: relative;
+    background-color: inherit;
+    height: 1.5rem;
+    width: calc(100% - 1em);
+    outline: none;
+    padding: 0.25em;
+    font-size: 1rem;
+    color: #ededed;
+    border: 2px solid #989898;
+    border-radius: 0.5em;
+}
+
+.auth-container form input[type="submit"] {
+    border: none;
+    cursor: pointer;
+    width: max-content;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    font-size: 1rem;
+}
+
+.auth-container form input[type="submit"]:hover {
+    color: var(--light1);
+}
+
+.auth-container form p {
+    font-size: max(10px, 0.6em);
+}
+
+.auth-container form b {
+    font-size: 0.8em;
+}
+
+.auth-container form input:hover,
+.auth-container form input:focus,
+.auth-container form input:active {
+    border-color: var(--light1);
+}
+
+.auth-container form div {
+    position: relative;
+}
+
+.auth-container form i {
+    /* position: absolute;
+    right: 1em;
+    top: 1.75rem; */
+    position: relative;
+    z-index: 2;
+    margin-left: -1.5em;
+    cursor: pointer;
+}
+
+.container {
+    width: 100%;
+    height: 16rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.radio-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+}
+
+.radio-checkbox input[type="radio"] {
+    display: flex;
+    opacity: 0;
+    width: 0.6em;
+    height: 0.6em;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+}
+
+.radio-checkbox .styled-radio {
+    display: block;
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    border: 2px solid var(--light1);
+}
+.radio-checkbox input[type="radio"]:checked + .styled-radio {
+    background: radial-gradient(var(--light1) 50%, var(--fontColor) 51%);
+}
+
+.radio-checkbox input[type="checkbox"]:checked ~ .checkbox-tick {
+    opacity: 1;
+}
+
+.radio-checkbox input[type="radio"]:checked ~ label,
+.radio-checkbox input[type="checkbox"]:checked ~ label {
+    color: var(--light1);
+}
+
+.radio-checkbox label {
+    cursor: pointer;
+    margin-left: 0.5em;
+}
