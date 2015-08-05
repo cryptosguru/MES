@@ -1,0 +1,51 @@
+name: Build frontend, docker images and push docker images
+on: 
+  pull_request:
+    branches: 
+      - main
+
+jobs: 
+  build_client:
+    name: Build client
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout repo
+      - uses: actions/setup-node@v2
+        name: Setup node 
+        with:
+          node-version: '14.1.0'
+      - run: |
+            cd client
+            npm run-script build
+        name: Build client files
+      - 
+        env: 
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        name: Docker login
+      - run: | 
+            docker build -f prod.dockerfile . -t tejashegde/messaging_app_client
+            docker push tejashegde/messaging_app_client
+        name: Docker build and push 
+  build_api:
+    name: Build api 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 
+      - 
+        env: 
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        name: Docker login
+      - 
+        run: |
+              cd api 
+              docker build -f prod.dockerfile . -t tejashegde/messaging_app_api
+              docker push tejashegde/messaging_app_api
+        name: Docker build and push
+    
