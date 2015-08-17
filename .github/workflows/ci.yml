@@ -15,7 +15,10 @@ jobs:
         name: Setup node 
         with:
           node-version: '14.1.0'
-      - run: |
+      - 
+        env: 
+          CI: false
+        run: |
             cd client
             npm ci 
             npm run-script build
