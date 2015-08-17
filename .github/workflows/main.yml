@@ -1,4 +1,4 @@
-name: Build frontend, docker images and push docker images
+name: Build and deploy
 on: 
   pull_request:
     branches: 
@@ -40,6 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2 
+        name: Checkout code
       - 
         env: 
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
@@ -53,4 +54,17 @@ jobs:
               docker build -f prod.dockerfile . -t tejashegde/messaging_app_api
               docker push tejashegde/messaging_app_api
         name: Docker build and push
-    
+  compose_up: 
+    name: docker-compose up
+    runs-on: self-hosted
+    needs: 
+      - build_api
+      - build_client
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          clean: false
+        name: Checkout code
+      - 
+        run: |
+            docker-compose -f docker-compose.prod.yml up

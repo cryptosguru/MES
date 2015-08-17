@@ -2,9 +2,7 @@ version: '3.3'
 
 services:
   client:
-    build: 
-      dockerfile: ./prod.dockerfile
-      context: ./client/
+    image: tejashegde/messaging_app_client:latest
     ports:
       - 80:80
     container_name: messagingAppClient
@@ -12,9 +10,7 @@ services:
     depends_on:
       - api
   api:
-    build:
-      dockerfile: ./prod.dockerfile 
-      context: ./api
+    image: tejashegde/messaging_app_api:latest
     ports:
       - 5000:5000
     container_name: messagingAppApi
