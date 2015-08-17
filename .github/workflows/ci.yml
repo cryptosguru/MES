@@ -17,6 +17,7 @@ jobs:
           node-version: '14.1.0'
       - run: |
             cd client
+            npm ci 
             npm run-script build
         name: Build client files
       - 
